@@ -1,5 +1,6 @@
 import Data.Char (isDigit)
-import qualified Data.Map as Map
+import Data.List.Extra
+import Data.Map qualified as Map
 import System.IO ()
 
 firstLast :: [a] -> [a]
@@ -8,20 +9,10 @@ firstLast x = [head x, last x]
 task1 :: String -> Int
 task1 x = sum (map (read . firstLast . filter isDigit) $ lines x :: [Int])
 
-type StringMap = Map.Map String String
-
-replaceWithMap :: StringMap -> String -> String
-replaceWithMap m x = 
-    if null m then x
-    else let (old, new) = Map.findMin m
-             -- TODO: implement replace with isInfixOf x' = replace old new x
-             x' = x
-         in replaceWithMap (Map.deleteMin m) x'
-
 task2 :: String -> Int
-task2 x = sum (map (read . firstLast . filter isDigit . replaceWithMap digitMap) $ lines x :: [Int])
+task2 x = sum (map (read . firstLast . filter isDigit . (\x -> replaceFront dm dm x ++ replaceBack dm dm x)) $ lines x :: [Int])
   where
-    digitMap =
+    dm =
       Map.fromList
         [ ("one", "1"),
           ("two", "2"),
@@ -33,6 +24,24 @@ task2 x = sum (map (read . firstLast . filter isDigit . replaceWithMap digitMap)
           ("eight", "8"),
           ("nine", "9")
         ]
+    replaceFront _ _ [] = []
+    replaceFront mo mr x =
+      if null mr
+        then head x : replaceFront mo mo (tail x)
+        else
+          let (old, new) = Map.findMin mr
+           in case stripPrefix old x of
+                Just remainder -> new ++ remainder
+                Nothing -> replaceFront mo (Map.deleteMin mr) x
+    replaceBack _ _ [] = []
+    replaceBack mo mr x =
+      if null mr
+        then replaceBack mo mo (init x) ++ [last x]
+        else
+          let (old, new) = Map.findMin mr
+           in case stripSuffix old x of
+                Just remainder -> remainder ++ new
+                Nothing -> replaceBack mo (Map.deleteMin mr) x
 
 main :: IO ()
 main = do
