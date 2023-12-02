@@ -45,6 +45,6 @@ task2 x = sum (map (read . firstLast . filter isDigit . (\x -> replaceFront dm d
 
 main :: IO ()
 main = do
-  iData <- readFile "input.txt"
+  iData <- readFile "d01/input.txt"
   print (task1 iData)
   print (task2 iData)

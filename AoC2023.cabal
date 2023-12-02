@@ -1,0 +1,14 @@
+cabal-version:      3.0
+version:            0.1.0
+name:               AoC2023
+synopsis:           My solutions for https://adventofcode.com/2023
+author:             Stefan Scheller
+license:            Unlicense
+license-file:       LICENSE
+build-type:         Simple
+
+executable d01
+  build-depends:    base>=4.1.7, containers>=0.6.7, extra>=1.7.14
+  main-is:          solution.hs
+  hs-source-dirs:   d01
+  default-language: GHC2021
