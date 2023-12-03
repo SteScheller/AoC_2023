@@ -1,0 +1,26 @@
+cabal-version:      3.0
+version:            0.1.0
+name:               AoC2023
+synopsis:           My solutions for https://adventofcode.com/2023
+author:             Stefan Scheller
+license:            Unlicense
+license-file:       LICENSE
+build-type:         Simple
+
+library 
+  exposed-modules:  D01
+  build-depends:    base, containers, extra
+  hs-source-dirs:   D01
+  default-language: GHC2021
+
+executable d01
+  main-is:          D01/Main.hs
+  build-depends:    base, AoC2023
+  default-language: GHC2021
+
+
+test-suite d01-test
+  type:             exitcode-stdio-1.0
+  main-is:          D01/Tests.hs
+  build-depends:    base, HUnit, AoC2023
+  default-language: GHC2021
