@@ -8,9 +8,9 @@ license-file:       LICENSE
 build-type:         Simple
 
 library 
-  exposed-modules:  D01
-  build-depends:    base, containers, extra
-  hs-source-dirs:   D01
+  exposed-modules:  D01, D02
+  build-depends:    base, containers, extra, split, regex-tdfa ^>= 1.3.2
+  hs-source-dirs:   D01, D02
   default-language: GHC2021
 
 executable d01
@@ -22,5 +22,16 @@ executable d01
 test-suite d01-test
   type:             exitcode-stdio-1.0
   main-is:          D01/Tests.hs
+  build-depends:    base, HUnit, AoC2023
+  default-language: GHC2021
+
+executable d02
+  main-is:          D02/Main.hs
+  build-depends:    base, AoC2023
+  default-language: GHC2021
+
+test-suite d02-test
+  type:             exitcode-stdio-1.0
+  main-is:          D02/Tests.hs
   build-depends:    base, HUnit, AoC2023
   default-language: GHC2021
