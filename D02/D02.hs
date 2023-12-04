@@ -1,7 +1,6 @@
 module D02 (task1, task2) where
 
 import Data.List.Split (splitOn)
-import System.IO ()
 import Text.Regex.TDFA ((=~))
 
 data Cubes = Cubes {red :: Int, green :: Int, blue :: Int} deriving (Show)

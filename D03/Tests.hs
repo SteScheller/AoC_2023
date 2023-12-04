@@ -6,7 +6,6 @@ import Test.HUnit
     Test (TestCase, TestLabel, TestList),
     assertEqual,
     runTestTT,
-    showCounts,
   )
 
 testInput =
