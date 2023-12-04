@@ -23,7 +23,7 @@ testInput =
 
 test1 = TestCase (assertEqual "task1" 4361 (task1 testInput))
 
-test2 = TestCase (assertEqual "task2" 2286 (task2 testInput))
+test2 = TestCase (assertEqual "task2" 467835 (task2 testInput))
 
 tests = TestList [TestLabel "task1" test1, TestLabel "task2" test2]
 
