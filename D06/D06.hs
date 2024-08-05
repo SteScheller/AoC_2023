@@ -1,5 +1,4 @@
 module D06 (task1, task2) where
-import Data.Monoid (Product(Product))
 
 import Data.List.Split (splitOn)
 
@@ -17,4 +16,8 @@ task1 x = product $ zipWith numWaysToBeat times distances
         distances = getNumbers $ lines x !! 1
 
 task2 :: String -> Int
-task2 x = 0
+task2 x = numWaysToBeat times distances
+    where
+        getConcatenatedNumber l = read $ concat $ words $ splitOn ":" l !! 1 :: Int
+        times = getConcatenatedNumber $ lines x !! 0
+        distances = getConcatenatedNumber $ lines x !! 1

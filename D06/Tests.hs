@@ -8,13 +8,17 @@ import Test.HUnit
     runTestTT,
   )
 
-testInput =
+testInput1 =
   "Time:      7  15   30\n\
   \Distance:  9  40  200\n"
 
-test1 = TestCase (assertEqual "task1" 288 (task1 testInput))
+testInput2 =
+  "Time:      71530\n\
+  \Distance:  940200\n"
 
-test2 = TestCase (assertEqual "task2" 467835 (task2 testInput))
+test1 = TestCase (assertEqual "task1" 288 (task1 testInput1))
+
+test2 = TestCase (assertEqual "task2" 71503 (task2 testInput2))
 
 tests = TestList [TestLabel "task1" test1, TestLabel "task2" test2]
 
